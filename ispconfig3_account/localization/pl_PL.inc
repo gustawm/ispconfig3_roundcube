@@ -11,5 +11,6 @@ $labels['acc_wblist'] = 'Czarna/Biała Lista';
 $labels['acc_lastlogin'] = 'Ostatnio zalogowany';
 $labels['acc_defaultidentity'] = 'Domyślna tożsamość';
 $labels['acc_noalias'] = 'Brak powiązanych adresów email';
+$labels['acc_last_pw_change'] = 'Ostatnia zmiana hasła';
 ?> 
 
