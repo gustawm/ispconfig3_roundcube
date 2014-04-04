@@ -136,18 +136,6 @@ class ispconfig3_account extends rcube_plugin
     $this->rcmail_inst->output->set_env('framed', TRUE);
     $out = '<form class="propform"><fieldset><legend>' . $this->gettext('acc_general') . '</legend>' . "\n";
     $table = new html_table(array('cols' => 2, 'cellpadding' => 3, 'class' => 'propform'));
-    $table->add('title', Q($this->gettext('username')));
-    $table->add('', Q($this->rcmail_inst->user->data['username']));
-    $table->add('title', Q($this->gettext('server')));
-    $table->add('', Q($this->rcmail_inst->user->data['mail_host']));
-    $table->add('title', Q($this->gettext('acc_lastlogin')));
-    $table->add('', Q($this->rcmail_inst->user->data['last_login']));
-    $identity = $this->rcmail_inst->user->get_identity();
-    $table->add('title', Q($this->gettext('acc_defaultidentity')));
-    $table->add('', Q($identity['name'] . ' <' . $identity['email'] . '>'));
-    $out .= $table->show();
-    $out .= "</fieldset>\n";
-    $out .= '<fieldset><legend>' . $this->gettext('acc_alias') . '</legend>' . "\n";
     $alias_table = new html_table(array('id' => 'alias-table', 'class' => 'records-table', 'cellspacing' => '0', 'cols' => 1));
     $alias_table->add_header(array('width' => '100%'), $this->gettext('mail'));
     try {
@@ -166,6 +154,21 @@ class ispconfig3_account extends rcube_plugin
     } catch (SoapFault $e) {
       $this->rcmail_inst->output->command('display_message', 'Soap Error: ' . $e->getMessage(), 'error');
     }
+    
+    $table->add('title', Q($this->gettext('acc_last_pw_change')));
+    $table->add('', Q($mail_user[0]['last_password_change']));
+    $table->add('title', Q($this->gettext('username')));
+    $table->add('', Q($this->rcmail_inst->user->data['username']));
+    $table->add('title', Q($this->gettext('server')));
+    $table->add('', Q($this->rcmail_inst->user->data['mail_host']));
+    $table->add('title', Q($this->gettext('acc_lastlogin')));
+    $table->add('', Q($this->rcmail_inst->user->data['last_login']));
+    $identity = $this->rcmail_inst->user->get_identity();
+    $table->add('title', Q($this->gettext('acc_defaultidentity')));
+    $table->add('', Q($identity['name'] . ' <' . $identity['email'] . '>'));
+    $out .= $table->show();
+    $out .= "</fieldset>\n";
+    $out .= '<fieldset><legend>' . $this->gettext('acc_alias') . '</legend>' . "\n";
     $out .= "<div id=\"alias-cont\">" . $alias_table->show() . "</div>\n";
     $out .= "</fieldset></form>\n";
 
