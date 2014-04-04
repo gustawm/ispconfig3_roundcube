@@ -11,4 +11,5 @@ $labels['acc_wblist'] = 'Black/White List';
 $labels['acc_lastlogin'] = 'Last Login';
 $labels['acc_defaultidentity'] = 'Default Identity';
 $labels['acc_noalias'] = 'No linked email address(es)';
+$labels['acc_last_pw_change'] = 'Date of last password change';
 ?>
